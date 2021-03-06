@@ -11,8 +11,14 @@ import java.util.*;
  */
 public class Player implements Comparable<Player> {
 
-    private List<Card> cards; // 玩家手上的五张牌
-    private RankingResult rankingResult; // 牌型校验结果
+    // 玩家手上的五张牌
+    private List<Card> cards;
+    // 牌型校验结果
+    private RankingResult rankingResult;
+    // 玩家状态
+    private TexasPlayerStatusEnum status;
+    // 玩家編號
+    private int playerId;
 
     public Player() {
         this.cards = new ArrayList<Card>();
@@ -34,7 +40,7 @@ public class Player implements Comparable<Player> {
      */
     public void addCard(Card card) {
         this.cards.add(card);
-        Collections.sort(this.cards);
+//        Collections.sort(this.cards);
     }
 
     public List<Card> getCards() {
@@ -43,7 +49,7 @@ public class Player implements Comparable<Player> {
 
     public RankingResult getRankingResult() {
         if (rankingResult == null) {
-            rankingResult =  new RankingResult();
+            rankingResult = new RankingResult();
             rankingResult.setRankingEnum(RankingEnum.HIGH_CARD);
             rankingResult.setHighCard(this.cards.get(0));
         }
@@ -54,7 +60,7 @@ public class Player implements Comparable<Player> {
         List<Card> cards = this.getCards();
         Map<Integer, Integer> rankCount = new HashMap<Integer, Integer>();
         for (Card card : cards) {
-            Integer number = new Integer(card.getRank().getNumber());
+            Integer number = card.getRank().getNumber();
             if (!rankCount.containsKey(number)) {
                 rankCount.put(number, 1);
             } else {
@@ -68,6 +74,7 @@ public class Player implements Comparable<Player> {
         this.rankingResult = rankingResult;
     }
 
+    @Override
     public int compareTo(Player o) {
         int selfPriority = this.getRankingResult().getRankingEnum().getPriority();
         int otherPriority = o.getRankingResult().getRankingEnum().getPriority();
@@ -79,17 +86,31 @@ public class Player implements Comparable<Player> {
             return -1;
         }
 
-        if (selfPriority == otherPriority) {
-            IComparing cmp = ComparingFacade.getComparing(this.getRankingResult().getRankingEnum());
-            return cmp.compare(this, o);
-        }
-        return 0;
+        IComparing cmp = ComparingFacade.getComparing(this.getRankingResult().getRankingEnum());
+        return cmp.compare(this, o);
+    }
+
+    public TexasPlayerStatusEnum getStatus() {
+        return status;
+    }
+
+    public void setStatus(TexasPlayerStatusEnum status) {
+        this.status = status;
+    }
+
+    public int getPlayerId() {
+        return playerId;
+    }
+
+    public void setPlayerId(int playerId) {
+        this.playerId = playerId;
     }
 
     @Override
     public String toString() {
         return "Player{" +
-                "cards=" + cards +
+                "playerId=" + playerId +
+                ", cards=" + cards +
                 ", rankingResult=" + rankingResult +
                 '}';
     }

@@ -43,15 +43,16 @@ public class RankingFacade implements IRanking {
         return instance;
     }
 
+    @Override
     public RankingResult resolve(Player player) {
-        RankingResult result = null;
+        RankingResult result;
         for (IRanking ranking : RankingFacade.rankings) {
             result = ranking.resolve(player);
             if (result != null) {
                 return result;
             }
         }
-        return result;
+        return null;
     }
 
 }

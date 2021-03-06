@@ -11,6 +11,7 @@ import java.util.List;
  */
 public abstract class AbstractRanking implements IRanking {
 
+    @Override
     public RankingResult resolve(Player player) {
         this.preResolve(player);
         RankingResult result = this.doResolve(player);
@@ -38,15 +39,22 @@ public abstract class AbstractRanking implements IRanking {
         if (cards.size() == 1) {
             return true;
         }
-        if (cards.size() > 1) {
-            Card card = cards.get(0);
-            CardSuitEnum suitEnum = card.getSuit();
-            for (int i = 1; i < cards.size(); i++) {
-                if (suitEnum != cards.get(i).getSuit()) {
-                    return false;
-                }
+        Card card = cards.get(0);
+        CardSuitEnum suitEnum = card.getSuit();
+        for (int i = 1; i < cards.size(); i++) {
+            if (suitEnum != cards.get(i).getSuit()) {
+                return false;
             }
         }
+//        if (cards.size() > 1) {
+//            Card card = cards.get(0);
+//            CardSuitEnum suitEnum = card.getSuit();
+//            for (int i = 1; i < cards.size(); i++) {
+//                if (suitEnum != cards.get(i).getSuit()) {
+//                    return false;
+//                }
+//            }
+//        }
         return true;
     }
 }

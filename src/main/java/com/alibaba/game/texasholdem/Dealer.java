@@ -48,9 +48,35 @@ public class Dealer {
      * 开始游戏, 负责被每个玩家发牌
      */
     public void start() {
-        for (int i = 0; i < this.playerList.size(); i++) {
-            for (int j = 0; j < Constants.HAND_CARD_NUMERS; j++) {
-                this.playerList.get(i).addCard(this.poker.dispatch());
+        for (Player player : this.playerList) {
+//            int nextInt = ThreadLocalRandom.current().nextInt(Constants.HAND_CARD_NUMERS);
+            int nextInt = Constants.HAND_CARD_NUMERS;
+            for (int j = 0; j < nextInt; j++) {
+                player.addCard(this.poker.dispatch());
+            }
+        }
+    }
+
+    /* 发底牌 / 窩牌  */
+    private static final int HOLE_CARD_NUM = 2;
+
+    // 窩牌
+    public void holeCards() {
+        for (Player player : this.playerList) {
+            if (TexasPlayerStatusEnum.FOLD != player.getStatus()) {
+                for (int j = 0; j < HOLE_CARD_NUM; j++) {
+                    player.addCard(this.poker.dispatch());
+                }
+            }
+        }
+    }
+
+    // 懸牌 / 轉牌 / 河牌
+    public void deal() {
+        Card card = this.poker.dispatch();
+        for (Player player : this.playerList) {
+            if (TexasPlayerStatusEnum.FOLD != player.getStatus()) {
+                player.addCard(card);
             }
         }
     }
@@ -59,8 +85,8 @@ public class Dealer {
      * 计算每个玩家的牌型
      */
     public void showHand() {
-        for (int i = 0; i < this.playerList.size(); i++) {
-            RankingFacade.getInstance().resolve(this.playerList.get(i));
+        for (Player player : this.playerList) {
+            RankingFacade.getInstance().resolve(player);
         }
     }
 

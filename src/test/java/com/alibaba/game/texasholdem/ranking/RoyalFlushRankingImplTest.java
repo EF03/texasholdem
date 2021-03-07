@@ -1,10 +1,10 @@
 package com.alibaba.game.texasholdem.ranking;
 
 import com.alibaba.game.texasholdem.*;
-import junit.framework.TestCase;
+import org.junit.Assert;
 import org.junit.Test;
 
-public class RoyalFlushRankingImplTest extends TestCase {
+public class RoyalFlushRankingImplTest {
 
 
     @Test
@@ -28,9 +28,9 @@ public class RoyalFlushRankingImplTest extends TestCase {
         IRanking ranking = new RoyalFlushRankingImpl();
 
         RankingResult result = ranking.resolve(p);
-        assertTrue(result != null);
+        Assert.assertNotNull(result);
 
-        assertEquals(result.getRankingEnum(), RankingEnum.ROYAL_FLUSH);
+        Assert.assertEquals(result.getRankingEnum(), RankingEnum.ROYAL_FLUSH);
 
         Player p2 = new Player();
         p2.addCard(card1);
@@ -42,7 +42,7 @@ public class RoyalFlushRankingImplTest extends TestCase {
         IRanking ranking2 = new RoyalFlushRankingImpl();
 
         RankingResult result2 = ranking2.resolve(p2);
-        assertTrue(result2 == null);
+        Assert.assertNull(result2);
 
     }
 

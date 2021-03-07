@@ -7,14 +7,16 @@ import java.util.Map;
 /**
  * Class {@code OnePairComparingImpl}
  * 一对的大小比较(先比对子, 再比三个单张)
+ * @author fm035
  */
 public class OnePairComparingImpl extends AbstractComparing {
 
+    @Override
     public int compare(Player o1, Player o2) {
         Map<Integer, Integer> p1CardMap = o1.getCardsRankCountMap();
         Map<Integer, Integer> p2CardMap = o2.getCardsRankCountMap();
 
-        return this.pairComparing(p1CardMap, p2CardMap, 2, 2);
+        return this.pairComparing(p1CardMap, p2CardMap, 2, 2,5);
     }
 
 }

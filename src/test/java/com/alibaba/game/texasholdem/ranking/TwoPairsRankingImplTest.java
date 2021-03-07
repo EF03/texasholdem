@@ -1,10 +1,10 @@
 package com.alibaba.game.texasholdem.ranking;
 
 import com.alibaba.game.texasholdem.*;
-import junit.framework.TestCase;
+import org.junit.Assert;
 import org.junit.Test;
 
-public class TwoPairsRankingImplTest extends TestCase {
+public class TwoPairsRankingImplTest {
 
 
     @Test
@@ -15,6 +15,8 @@ public class TwoPairsRankingImplTest extends TestCase {
         Card card12 = new Card(CardSuitEnum.SPADES, CardRankEnum.CARD_QUEUE);
         Card card1212 = new Card(CardSuitEnum.CLUBS, CardRankEnum.CARD_QUEUE);
         Card card9 = new Card(CardSuitEnum.HEARTS, CardRankEnum.CARD_NINE);
+        Card card2 = new Card(CardSuitEnum.HEARTS, CardRankEnum.CARD_TWO);
+        Card card22 = new Card(CardSuitEnum.HEARTS, CardRankEnum.CARD_TWO);
 
         Card otherSuitCard = new Card(CardSuitEnum.DIAMONDS, CardRankEnum.CARD_TEN);
 
@@ -24,13 +26,15 @@ public class TwoPairsRankingImplTest extends TestCase {
         p.addCard(card1212);
         p.addCard(card12);
         p.addCard(card9);
+        p.addCard(card2);
+        p.addCard(card22);
 
         IRanking ranking = new TwoPairsRankingImpl();
 
         RankingResult result = ranking.resolve(p);
-        assertTrue(result != null);
+        Assert.assertNotNull(result);
 
-        assertEquals(result.getRankingEnum(), RankingEnum.TWO_PAIR);
+        Assert.assertEquals(result.getRankingEnum(), RankingEnum.TWO_PAIR);
 
         Player p2 = new Player();
         p2.addCard(card13);
@@ -38,11 +42,13 @@ public class TwoPairsRankingImplTest extends TestCase {
         p2.addCard(card12);
         p2.addCard(card9);
         p2.addCard(otherSuitCard);
+        p2.addCard(card2);
+        p2.addCard(card22);
 
         IRanking ranking2 = new TwoPairsRankingImpl();
 
         RankingResult result2 = ranking2.resolve(p2);
-        assertTrue(result2 == null);
+        Assert.assertNull(result2);
 
     }
 

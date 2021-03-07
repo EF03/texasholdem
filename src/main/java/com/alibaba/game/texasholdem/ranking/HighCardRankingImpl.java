@@ -14,6 +14,7 @@ import java.util.Map;
  */
 public class HighCardRankingImpl extends AbstractRanking {
 
+    @Override
     protected RankingResult doResolve(Player player) {
 
         RankingResult result = null;

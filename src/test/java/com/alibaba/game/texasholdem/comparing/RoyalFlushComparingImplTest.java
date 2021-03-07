@@ -4,10 +4,10 @@ import com.alibaba.game.texasholdem.*;
 import com.alibaba.game.texasholdem.ranking.IRanking;
 import com.alibaba.game.texasholdem.ranking.RankingResult;
 import com.alibaba.game.texasholdem.ranking.RoyalFlushRankingImpl;
-import junit.framework.TestCase;
+import org.junit.Assert;
 import org.junit.Test;
 
-public class RoyalFlushComparingImplTest extends TestCase {
+public class RoyalFlushComparingImplTest {
 
     @Test
     public void testComparing() {
@@ -27,8 +27,8 @@ public class RoyalFlushComparingImplTest extends TestCase {
         IRanking ranking = new RoyalFlushRankingImpl();
         RankingResult result = ranking.resolve(p);
 
-        assertTrue(result != null);
-        assertEquals(result.getRankingEnum(), RankingEnum.ROYAL_FLUSH);
+        Assert.assertNotNull(result);
+        Assert.assertEquals(result.getRankingEnum(), RankingEnum.ROYAL_FLUSH);
 
 
         Card card21 = new Card(CardSuitEnum.SPADES, CardRankEnum.CARD_ACE);
@@ -47,9 +47,9 @@ public class RoyalFlushComparingImplTest extends TestCase {
         IRanking ranking2 = new RoyalFlushRankingImpl();
         RankingResult result2 = ranking2.resolve(p2);
 
-        assertTrue(result2 != null);
-        assertEquals(result2.getRankingEnum(), RankingEnum.ROYAL_FLUSH);
+        Assert.assertNotNull(result2);
+        Assert.assertEquals(result2.getRankingEnum(), RankingEnum.ROYAL_FLUSH);
 
-        assertEquals(0, p.compareTo(p2));
+        Assert.assertEquals(0, p.compareTo(p2));
     }
 }

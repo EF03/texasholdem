@@ -3,27 +3,32 @@ package com.alibaba.game.texasholdem.ranking;
 import com.alibaba.game.texasholdem.Player;
 import com.alibaba.game.texasholdem.RankingEnum;
 
-import java.util.Iterator;
+import java.util.Collection;
 import java.util.Map;
 
 /**
  * Class {@code TwoPairsRankingImpl}
  * 解析玩家手中的牌是不是两对(2+2+1)
+ *
+ * @author fm035
  */
 public class TwoPairsRankingImpl extends AbstractRanking {
 
+    @Override
     protected RankingResult doResolve(Player player) {
 
         RankingResult result = null;
         Map<Integer, Integer> rankCount = player.getCardsRankCountMap();
 
         boolean hasTwo = false;
-
-        if (rankCount.size() == 3) {
-            Iterator<Map.Entry<Integer, Integer>> it = rankCount.entrySet().iterator();
-            while (it.hasNext()) {
-                Map.Entry<Integer, Integer> next = it.next();
-                if (next.getValue() == 2 || next.getValue() == 1) {
+        int countTwo = 0;
+        if (rankCount.size() <= 4) {
+            Collection<Integer> values = rankCount.values();
+            for (int value : values) {
+                if (value == 2) {
+                    countTwo++;
+                }
+                if (countTwo >= 2) {
                     hasTwo = true;
                     break;
                 }

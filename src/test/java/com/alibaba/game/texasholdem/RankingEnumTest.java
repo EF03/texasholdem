@@ -1,17 +1,17 @@
 package com.alibaba.game.texasholdem;
 
-import junit.framework.TestCase;
+import org.junit.Assert;
 import org.junit.Test;
 
-public class RankingEnumTest extends TestCase {
+public class RankingEnumTest {
 
     @Test
     public void testGetNumber() {
 
         RankingEnum ruleRanking1 = RankingEnum.FLUSH;
 
-        assertEquals(ruleRanking1.getType(), "同花");
-        assertEquals(ruleRanking1.getPriority(), 600);
+        Assert.assertEquals(ruleRanking1.getType(), "同花");
+        Assert.assertEquals(ruleRanking1.getPriority(), 600);
     }
 
 }

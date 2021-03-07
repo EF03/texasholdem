@@ -9,15 +9,19 @@ import java.util.List;
 /**
  * Class {@code StraightFlushRankingImpl}
  * 解析玩家手中的牌是不是同花顺(即是 最大牌是K 且同色)
+ *
+ * @author fm035
  */
 public class StraightFlushRankingImpl extends AbstractRanking {
 
+    @Override
     protected RankingResult doResolve(Player player) {
 
         RankingResult result = null;
 
         List<Card> cards = player.getCards();
-        if (this.isSameSuit(cards)) { // 如果是同色
+        // 如果是同色
+        if (this.isSameSuit(cards)) {
             boolean isStraight = true;
             Card previousCard = null;
             for (Card card : cards) {
@@ -29,7 +33,7 @@ public class StraightFlushRankingImpl extends AbstractRanking {
                 }
                 previousCard = card;
             }
-            if (isStraight == true) {
+            if (isStraight) {
                 result = new RankingResult();
                 result.setRankingEnum(RankingEnum.STRAIGHT_FLUSH);
             }

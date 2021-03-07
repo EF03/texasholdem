@@ -1,10 +1,10 @@
 package com.alibaba.game.texasholdem.ranking;
 
 import com.alibaba.game.texasholdem.*;
-import junit.framework.TestCase;
+import org.junit.Assert;
 import org.junit.Test;
 
-public class FullHouseRankingImplTest extends TestCase {
+public class FullHouseRankingImplTest {
 
 
     @Test
@@ -28,9 +28,9 @@ public class FullHouseRankingImplTest extends TestCase {
         IRanking ranking = new FullHouseRankingImpl();
 
         RankingResult result = ranking.resolve(p);
-        assertTrue(result != null);
+        Assert.assertNotNull(result);
 
-        assertEquals(result.getRankingEnum(), RankingEnum.FULL_HOUSE);
+        Assert.assertEquals(result.getRankingEnum(), RankingEnum.FULL_HOUSE);
 
         Player p2 = new Player();
         p2.addCard(card13);
@@ -42,7 +42,7 @@ public class FullHouseRankingImplTest extends TestCase {
         IRanking ranking2 = new FullHouseRankingImpl();
 
         RankingResult result2 = ranking2.resolve(p2);
-        assertTrue(result2 == null);
+        Assert.assertNull(result2);
 
     }
 

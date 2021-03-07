@@ -1,13 +1,13 @@
 package com.alibaba.game.texasholdem;
 
-import junit.framework.TestCase;
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class CardTest extends TestCase {
+public class CardTest {
 
     @Test
     public void testEquals() {
@@ -16,9 +16,9 @@ public class CardTest extends TestCase {
         Card card2 = new Card(CardSuitEnum.HEARTS, CardRankEnum.CARD_ACE);
         Card card3 = new Card(CardSuitEnum.SPADES, CardRankEnum.CARD_ACE);
 
-        assertEquals(card, card);
-        assertEquals(card, card2);
-        assertFalse(card == card3);
+        Assert.assertEquals(card, card);
+        Assert.assertEquals(card, card2);
+        Assert.assertNotSame(card, card3);
     }
 
     @Test
@@ -28,9 +28,9 @@ public class CardTest extends TestCase {
         Card card2 = new Card(CardSuitEnum.HEARTS, CardRankEnum.CARD_ACE);
         Card card3 = new Card(CardSuitEnum.SPADES, CardRankEnum.CARD_ACE);
 
-        assertEquals(card.hashCode(), card.hashCode());
-        assertEquals(card.hashCode(), card2.hashCode());
-        assertFalse(card.hashCode() == card3.hashCode());
+        Assert.assertEquals(card.hashCode(), card.hashCode());
+        Assert.assertEquals(card.hashCode(), card2.hashCode());
+        Assert.assertNotEquals(card.hashCode(), card3.hashCode());
     }
 
     @Test
@@ -41,10 +41,10 @@ public class CardTest extends TestCase {
         Card card3 = new Card(CardSuitEnum.DIAMONDS, CardRankEnum.CARD_QUEUE);
         Card card4 = new Card(CardSuitEnum.CLUBS, CardRankEnum.CARD_KING);
 
-        assertEquals(card.toString(), "A14");
-        assertEquals(card2.toString(), "C11");
-        assertEquals(card3.toString(), "B12");
-        assertEquals(card4.toString(), "D13");
+        Assert.assertEquals(card.toString(), "♥14");
+        Assert.assertEquals(card2.toString(), "♠11");
+        Assert.assertEquals(card3.toString(), "♦12");
+        Assert.assertEquals(card4.toString(), "♣13");
     }
 
     @Test
@@ -60,9 +60,9 @@ public class CardTest extends TestCase {
 
         Collections.sort(cards);
 
-        assertEquals(card, cards.get(0));
-        assertEquals(card2, cards.get(1));
-        assertEquals(card3, cards.get(2));
+        Assert.assertEquals(card, cards.get(0));
+        Assert.assertEquals(card2, cards.get(1));
+        Assert.assertEquals(card3, cards.get(2));
     }
 
 }

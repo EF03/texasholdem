@@ -1,11 +1,11 @@
 package com.alibaba.game.texasholdem;
 
-import junit.framework.TestCase;
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.Map;
 
-public class PlayerTest extends TestCase {
+public class PlayerTest {
 
     @Test
     public void testAddCard() {
@@ -14,7 +14,7 @@ public class PlayerTest extends TestCase {
         for (int i = 0; i < Constants.HAND_CARD_NUMERS; i++) {
             player.addCard(poker.dispatch());
         }
-        assertEquals(5, player.getCardSize());
+        Assert.assertEquals(5, player.getCardSize());
     }
 
     @Test
@@ -35,10 +35,10 @@ public class PlayerTest extends TestCase {
 
         Map<Integer, Integer> rankCount = player.getCardsRankCountMap();
 
-        assertEquals(2, rankCount.get(CardRankEnum.CARD_KING.getNumber()).intValue());
-        assertEquals(1, rankCount.get(CardRankEnum.CARD_ACE.getNumber()).intValue());
-        assertEquals(1, rankCount.get(CardRankEnum.CARD_QUEUE.getNumber()).intValue());
-        assertEquals(1, rankCount.get(CardRankEnum.CARD_JACK.getNumber()).intValue());
+        Assert.assertEquals(2, rankCount.get(CardRankEnum.CARD_KING.getNumber()).intValue());
+        Assert.assertEquals(1, rankCount.get(CardRankEnum.CARD_ACE.getNumber()).intValue());
+        Assert.assertEquals(1, rankCount.get(CardRankEnum.CARD_QUEUE.getNumber()).intValue());
+        Assert.assertEquals(1, rankCount.get(CardRankEnum.CARD_JACK.getNumber()).intValue());
     }
 
 }

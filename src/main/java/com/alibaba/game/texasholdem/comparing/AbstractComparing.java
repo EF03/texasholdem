@@ -3,10 +3,13 @@ package com.alibaba.game.texasholdem.comparing;
 import com.alibaba.game.texasholdem.Card;
 import com.alibaba.game.texasholdem.Player;
 
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 
+/**
+ * @author fm035
+ */
 public abstract class AbstractComparing implements IComparing {
 
     /**
@@ -19,33 +22,22 @@ public abstract class AbstractComparing implements IComparing {
      */
     protected int multiComparing(Map<Integer, Integer> map1, Map<Integer, Integer> map2, int pair) {
 
-        int p1Number = -1;
-        int p2Number = -1;
+        AtomicInteger p1Number = new AtomicInteger(-1);
+        AtomicInteger p2Number = new AtomicInteger(-1);
 
-        Iterator<Map.Entry<Integer, Integer>> it = map1.entrySet().iterator();
-        while (it.hasNext()) {
-            Map.Entry<Integer, Integer> next = it.next();
-            if (next.getValue() == pair) {
-                p1Number = next.getKey();
+        map1.forEach((u, v) -> {
+            if (v == pair && u > p1Number.get()) {
+                p1Number.set(u);
             }
-        }
+        });
 
-        Iterator<Map.Entry<Integer, Integer>> it2 = map2.entrySet().iterator();
-        while (it2.hasNext()) {
-            Map.Entry<Integer, Integer> next = it2.next();
-            if (next.getValue() == pair) {
-                p2Number = next.getKey();
+        map2.forEach((u, v) -> {
+            if (v == pair && u > p2Number.get()) {
+                p2Number.set(u);
             }
-        }
+        });
 
-        if (p1Number > p2Number) {
-            return -1;
-        }
-        if (p1Number < p2Number) {
-            return 1;
-        }
-
-        return 0;
+        return Integer.compare(p2Number.get(), p1Number.get());
     }
 
     /**
@@ -58,18 +50,17 @@ public abstract class AbstractComparing implements IComparing {
     protected int seqComparing(Player p1, Player p2) {
         List<Card> p1Cards = p1.getCards();
         List<Card> p2Cards = p2.getCards();
-
         int size = p1.getCardSize();
 
         for (int i = 0; i < size; i++) {
+            if (p1Cards.get(i).getRank().getNumber().equals(p2Cards.get(i).getRank().getNumber())) {
+                continue;
+            }
             if (p1Cards.get(i).getRank().getNumber() < p2Cards.get(i).getRank().getNumber()) {
                 return 1;
             }
             if (p1Cards.get(i).getRank().getNumber() > p2Cards.get(i).getRank().getNumber()) {
                 return -1;
-            }
-            if (p1Cards.get(i).getRank().getNumber() == p2Cards.get(i).getRank().getNumber()) {
-                continue;
             }
         }
         return 0;
@@ -78,16 +69,27 @@ public abstract class AbstractComparing implements IComparing {
     /**
      * @param map1
      * @param map2
-     * @param pair              对子的数量
+     * @param pair              对子的数量 牌的匹配數量
      * @param maxPairLoopAddOne 对子最大的循环数量+1
      * @return
      */
-    protected int pairComparing(Map<Integer, Integer> map1, Map<Integer, Integer> map2, int pair, int maxPairLoopAddOne) {
+    protected int pairComparing(Map<Integer, Integer> map1, Map<Integer, Integer> map2, int pair, int maxPairLoopAddOne, int countNum) {
+        System.out.println("map1 size = " + map1.size());
+        System.out.println("map2 size = " + map2.size());
+        System.out.println("map1 = " + map1);
+        System.out.println("map2 = " + map2);
+        System.out.println("pair = " + pair);
+        System.out.println("maxPairLoopAddOne = " + maxPairLoopAddOne);
+        System.out.println("countNum = " + countNum);
         if (maxPairLoopAddOne - 1 == 0) {
             pair = 1;
         }
         int p1MaxNum = this.findMaxNumber(map1, pair);
         int p2MaxNum = this.findMaxNumber(map2, pair);
+        System.out.println("p1MaxNum = " + p1MaxNum);
+        System.out.println("p2MaxNum = " + p2MaxNum);
+        System.out.println("\n ============================================================ ");
+
 
         if (p1MaxNum < p2MaxNum) {
             return 1;
@@ -95,31 +97,26 @@ public abstract class AbstractComparing implements IComparing {
         if (p1MaxNum > p2MaxNum) {
             return -1;
         }
-        if (p1MaxNum == p2MaxNum) {
-            map1.remove(p1MaxNum);
-            map2.remove(p2MaxNum);
-            if (map1.size() == map2.size() && 0 == maxPairLoopAddOne - 1) {
-                return this.pairComparing(map1, map2, pair - 1, 1);
-            }
-            return this.pairComparing(map1, map2, pair, maxPairLoopAddOne - 1);
+        int removeNum = map1.remove(p1MaxNum);
+        map2.remove(p2MaxNum);
+        countNum -= removeNum;
+        if (countNum == 0 && 0 >= maxPairLoopAddOne - 1) {
+            return 0;
         }
-        return 0;
+        return this.pairComparing(map1, map2, pair, maxPairLoopAddOne - 1, countNum);
     }
 
     private int findMaxNumber(Map<Integer, Integer> map, int pair) {
-        int p1Number = -1;
-
-        Iterator<Map.Entry<Integer, Integer>> it = map.entrySet().iterator();
-        while (it.hasNext()) {
-            Map.Entry<Integer, Integer> next = it.next();
-            if (next.getValue() == pair) {
-                int number = next.getKey();
-                if (number > p1Number) {
-                    p1Number = number;
+        AtomicInteger p1Number = new AtomicInteger(-1);
+        map.forEach((k, v) -> {
+            if (v == pair) {
+                int number = k;
+                if (number > p1Number.get()) {
+                    p1Number.set(number);
                 }
             }
-        }
-        return p1Number;
+        });
+        return p1Number.get();
 
     }
 

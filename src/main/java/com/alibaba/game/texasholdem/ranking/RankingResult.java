@@ -5,11 +5,18 @@ import com.alibaba.game.texasholdem.RankingEnum;
 
 /**
  * Class {@code RankingResult} 牌型解析接口的返回值
+ * @author fm035
  */
 public class RankingResult {
 
-    private Card highCard; // 5张牌中最大的值
-    private RankingEnum rankingEnum; // 牌型
+    /**
+     * 5张牌中最大的值
+     */
+    private Card highCard;
+    /**
+     * 牌型
+     */
+    private RankingEnum rankingEnum;
 
     public Card getHighCard() {
         return highCard;

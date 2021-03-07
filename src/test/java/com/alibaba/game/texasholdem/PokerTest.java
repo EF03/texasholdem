@@ -1,14 +1,14 @@
 package com.alibaba.game.texasholdem;
 
-import junit.framework.TestCase;
+import org.junit.Assert;
 import org.junit.Test;
 
-public class PokerTest extends TestCase {
+public class PokerTest {
 
     @Test
     public void testGetSize() {
         Poker poker = new Poker();
-        assertEquals(52, poker.getSize());
+        Assert.assertEquals(52, poker.getSize());
     }
 
     @Test
@@ -16,9 +16,9 @@ public class PokerTest extends TestCase {
         Poker poker = new Poker();
 
         poker.dispatch();
-        assertEquals(51, poker.getSize());
+        Assert.assertEquals(51, poker.getSize());
 
         poker.dispatch();
-        assertEquals(50, poker.getSize());
+        Assert.assertEquals(50, poker.getSize());
     }
 }

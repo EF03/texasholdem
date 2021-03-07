@@ -4,10 +4,10 @@ import com.alibaba.game.texasholdem.*;
 import com.alibaba.game.texasholdem.ranking.IRanking;
 import com.alibaba.game.texasholdem.ranking.RankingResult;
 import com.alibaba.game.texasholdem.ranking.StraightRankingImpl;
-import junit.framework.TestCase;
+import org.junit.Assert;
 import org.junit.Test;
 
-public class StraightComparingImplTest extends TestCase {
+public class StraightComparingImplTest {
 
     @Test
     public void testComparing() {
@@ -27,8 +27,8 @@ public class StraightComparingImplTest extends TestCase {
         IRanking ranking = new StraightRankingImpl();
         RankingResult result = ranking.resolve(p);
 
-        assertTrue(result != null);
-        assertEquals(result.getRankingEnum(), RankingEnum.STRAIGHT);
+        Assert.assertNotNull(result);
+        Assert.assertEquals(result.getRankingEnum(), RankingEnum.STRAIGHT);
 
 
         Card card21 = new Card(CardSuitEnum.DIAMONDS, CardRankEnum.CARD_FOUR);
@@ -47,9 +47,9 @@ public class StraightComparingImplTest extends TestCase {
         IRanking ranking2 = new StraightRankingImpl();
         RankingResult result2 = ranking2.resolve(p2);
 
-        assertTrue(result2 != null);
-        assertEquals(result2.getRankingEnum(), RankingEnum.STRAIGHT);
+        Assert.assertNotNull(result2);
+        Assert.assertEquals(result2.getRankingEnum(), RankingEnum.STRAIGHT);
 
-        assertEquals(0, p.compareTo(p2));
+        Assert.assertEquals(0, p.compareTo(p2));
     }
 }

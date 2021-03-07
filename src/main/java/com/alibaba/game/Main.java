@@ -35,12 +35,14 @@ public class Main {
     */
 
     public static void main(String[] args) {
-        for (int i = 0; i < 500; i++) {
+        long time = System.currentTimeMillis();
+        for (int i = 0; i < 100000000; i++) {
             boolean isBreak = playTexa();
-            if (isBreak) {
-                break;
-            }
+//            if (isBreak) {
+//                break;
+//            }
         }
+        System.out.println(System.currentTimeMillis() - time + " 毫秒");
 
     }
 
@@ -78,27 +80,19 @@ public class Main {
 
         List<Player> players = d.getRankingPlayers();
 
-        for (Player player : players) {
-            System.out.println(player.toString());
-        }
+//        for (Player player : players) {
+//            System.out.println(player.toString());
+//        }
 
-//        int compare1 = compare(you1, you2);
-//        int compare2 = compare(you2, you3);
-//        int compare3 = compare(you3, you1);
-//        int compare4 = compare(me, you1);
-//
-//        System.out.println(compare1);
-//        System.out.println(compare2);
-//        System.out.println(compare3);
-//        System.out.println(compare4);
         List<Player> playerWithoutFoldList = players.stream().filter(e -> {
             return e.getStatus() != TexasPlayerStatusEnum.FOLD;
         }).collect(Collectors.toList());
 
         List<Integer> playerEvenList = getWinners(playerWithoutFoldList);
 
-        System.out.println(playerEvenList);
+//        System.out.println(playerEvenList);
         return playerEvenList.size() > 1;
+//        return true;
     }
 
     private static List<Integer> getWinners(List<Player> playerWithoutFoldList) {

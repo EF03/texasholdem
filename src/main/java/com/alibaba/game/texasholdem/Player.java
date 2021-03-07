@@ -7,40 +7,52 @@ import com.alibaba.game.texasholdem.ranking.RankingResult;
 import java.util.*;
 
 /**
- * Class {@code Player} 一个玩家, 持有5张牌, 并伴随牌型的属性.
+ * Class {@code Player} 一个玩家, 持有7张牌, 并伴随牌型的属性.
+ *
+ * @author fm035
  */
 public class Player implements Comparable<Player> {
 
-    // 玩家手上的五张牌
-    private List<Card> cards;
-    // 牌型校验结果
+    /**
+     * 玩家手上的7张牌
+     */
+    private final List<Card> cards;
+    /**
+     * 玩家手上的7张牌 為排序
+     */
+    private final List<Card> originCards;
+    /**
+     * 牌型校验结果
+     */
     private RankingResult rankingResult;
-    // 玩家状态
+    /**
+     * 玩家状态
+     */
     private TexasPlayerStatusEnum status;
-    // 玩家編號
+    /**
+     * 玩家編號
+     */
     private int playerId;
 
     public Player() {
-        this.cards = new ArrayList<Card>();
+        this.originCards = new ArrayList<>();
+        this.cards = new ArrayList<>();
     }
 
     /**
-     * 获得手上的牌的张数
-     *
-     * @return
+     * @return 获得手上的牌的张数
      */
     public int getCardSize() {
         return this.cards.size();
     }
 
     /**
-     * 增加手牌
-     *
-     * @param card
+     * @param card 增加手牌
      */
     public void addCard(Card card) {
         this.cards.add(card);
-//        Collections.sort(this.cards);
+        this.originCards.add(card);
+        Collections.sort(this.cards);
     }
 
     public List<Card> getCards() {
@@ -58,7 +70,8 @@ public class Player implements Comparable<Player> {
 
     public Map<Integer, Integer> getCardsRankCountMap() {
         List<Card> cards = this.getCards();
-        Map<Integer, Integer> rankCount = new HashMap<Integer, Integer>();
+//        System.out.println("cards = " + cards);
+        Map<Integer, Integer> rankCount = new HashMap<>(16);
         for (Card card : cards) {
             Integer number = card.getRank().getNumber();
             if (!rankCount.containsKey(number)) {
@@ -111,6 +124,7 @@ public class Player implements Comparable<Player> {
         return "Player{" +
                 "playerId=" + playerId +
                 ", cards=" + cards +
+                ", originCards=" + originCards +
                 ", rankingResult=" + rankingResult +
                 '}';
     }

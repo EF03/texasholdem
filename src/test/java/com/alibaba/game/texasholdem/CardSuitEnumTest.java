@@ -1,9 +1,9 @@
 package com.alibaba.game.texasholdem;
 
-import junit.framework.TestCase;
+import org.junit.Assert;
 import org.junit.Test;
 
-public class CardSuitEnumTest extends TestCase {
+public class CardSuitEnumTest {
 
     @Test
     public void testGetName() {
@@ -13,10 +13,10 @@ public class CardSuitEnumTest extends TestCase {
         CardSuitEnum cardSuit3 = CardSuitEnum.SPADES;
         CardSuitEnum cardSuit4 = CardSuitEnum.CLUBS;
 
-        assertEquals(cardSuit1.getName(), "A");
-        assertEquals(cardSuit2.getName(), "B");
-        assertEquals(cardSuit3.getName(), "C");
-        assertEquals(cardSuit4.getName(), "D");
+        Assert.assertEquals(cardSuit1.getName(), "♥");
+        Assert.assertEquals(cardSuit2.getName(), "♦");
+        Assert.assertEquals(cardSuit3.getName(), "♠");
+        Assert.assertEquals(cardSuit4.getName(), "♣");
     }
 
 }

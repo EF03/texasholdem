@@ -3,15 +3,18 @@ package com.alibaba.game.texasholdem.ranking;
 import com.alibaba.game.texasholdem.Player;
 import com.alibaba.game.texasholdem.RankingEnum;
 
-import java.util.Iterator;
+import java.util.Collection;
 import java.util.Map;
 
 /**
  * Class {@code FullHouseRankingImpl}
  * 解析玩家手中的牌是不是三条+一对
+ *
+ * @author fm035
  */
 public class FullHouseRankingImpl extends AbstractRanking {
 
+    @Override
     protected RankingResult doResolve(Player player) {
 
         RankingResult result = null;
@@ -20,10 +23,9 @@ public class FullHouseRankingImpl extends AbstractRanking {
         Map<Integer, Integer> rankCount = player.getCardsRankCountMap();
 
         if (rankCount.size() == 2) {
-            Iterator<Map.Entry<Integer, Integer>> it = rankCount.entrySet().iterator();
-            while (it.hasNext()) {
-                Map.Entry<Integer, Integer> next = it.next();
-                if (next.getValue() == 2 || next.getValue() == 3) {
+            Collection<Integer> values = rankCount.values();
+            for (int value : values) {
+                if (value == 2 || value == 3) {
                     isFullHouse = true;
                     break;
                 }

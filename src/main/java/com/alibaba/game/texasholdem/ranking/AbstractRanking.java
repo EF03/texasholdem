@@ -8,6 +8,7 @@ import java.util.List;
 
 /**
  * Class {@code AbstractRanking} 抽象牌型解析接口, 抽象解析流程
+ * @author fm035
  */
 public abstract class AbstractRanking implements IRanking {
 
@@ -30,6 +31,12 @@ public abstract class AbstractRanking implements IRanking {
         player.setRankingResult(result);
     }
 
+    /**
+     * 牌型解析接口的返回值
+     *
+     * @param player 123
+     * @return RankingResult 排行結果
+     */
     protected abstract RankingResult doResolve(Player player);
 
     protected boolean isSameSuit(List<Card> cards) {
@@ -46,15 +53,6 @@ public abstract class AbstractRanking implements IRanking {
                 return false;
             }
         }
-//        if (cards.size() > 1) {
-//            Card card = cards.get(0);
-//            CardSuitEnum suitEnum = card.getSuit();
-//            for (int i = 1; i < cards.size(); i++) {
-//                if (suitEnum != cards.get(i).getSuit()) {
-//                    return false;
-//                }
-//            }
-//        }
         return true;
     }
 }

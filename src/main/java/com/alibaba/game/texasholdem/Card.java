@@ -35,13 +35,19 @@ public class Card implements Comparable<Card> {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         Card card = (Card) o;
 
-        if (this.suit.getName() != card.suit.getName()) return false;
-        return this.rank.getNumber() == card.rank.getNumber();
+        if (!this.suit.getName().equals(card.suit.getName())) {
+            return false;
+        }
+        return this.rank.getNumber().equals(card.rank.getNumber());
 
     }
 
@@ -62,16 +68,11 @@ public class Card implements Comparable<Card> {
      * @param o
      * @return
      */
+    @Override
     public int compareTo(Card o) {
         int selfNumber = this.rank.getNumber();
         int otherNumber = o.rank.getNumber();
 
-        if (selfNumber < otherNumber) {
-            return 1;
-        }
-        if (selfNumber > otherNumber) {
-            return -1;
-        }
-        return 0;
+        return Integer.compare(otherNumber, selfNumber);
     }
 }

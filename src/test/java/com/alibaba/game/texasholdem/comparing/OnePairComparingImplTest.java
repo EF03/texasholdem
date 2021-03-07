@@ -4,18 +4,18 @@ import com.alibaba.game.texasholdem.*;
 import com.alibaba.game.texasholdem.ranking.IRanking;
 import com.alibaba.game.texasholdem.ranking.OnePairRankingImpl;
 import com.alibaba.game.texasholdem.ranking.RankingResult;
-import junit.framework.TestCase;
+import org.junit.Assert;
 import org.junit.Test;
 
-public class OnePairComparingImplTest extends TestCase {
+public class OnePairComparingImplTest {
 
     @Test
     public void testComparingOneSamePair() {
         Card card1 = new Card(CardSuitEnum.HEARTS, CardRankEnum.CARD_KING);
         Card card2 = new Card(CardSuitEnum.SPADES, CardRankEnum.CARD_EIGHT);
         Card card3 = new Card(CardSuitEnum.DIAMONDS, CardRankEnum.CARD_EIGHT);
-        Card card4 = new Card(CardSuitEnum.CLUBS, CardRankEnum.CARD_FOUR);
         Card card5 = new Card(CardSuitEnum.HEARTS, CardRankEnum.CARD_FIVE);
+        Card card4 = new Card(CardSuitEnum.CLUBS, CardRankEnum.CARD_FOUR);
 
         Player p = new Player();
         p.addCard(card1);
@@ -27,15 +27,15 @@ public class OnePairComparingImplTest extends TestCase {
         IRanking ranking = new OnePairRankingImpl();
         RankingResult result = ranking.resolve(p);
 
-        assertTrue(result != null);
-        assertEquals(result.getRankingEnum(), RankingEnum.ONE_PAIR);
+        Assert.assertNotNull(result);
+        Assert.assertEquals(result.getRankingEnum(), RankingEnum.ONE_PAIR);
 
 
         Card card21 = new Card(CardSuitEnum.SPADES, CardRankEnum.CARD_KING);
         Card card22 = new Card(CardSuitEnum.DIAMONDS, CardRankEnum.CARD_EIGHT);
         Card card23 = new Card(CardSuitEnum.CLUBS, CardRankEnum.CARD_EIGHT);
-        Card card24 = new Card(CardSuitEnum.HEARTS, CardRankEnum.CARD_THREE);
         Card card25 = new Card(CardSuitEnum.SPADES, CardRankEnum.CARD_FIVE);
+        Card card24 = new Card(CardSuitEnum.HEARTS, CardRankEnum.CARD_THREE);
 
         Player p2 = new Player();
         p2.addCard(card21);
@@ -47,10 +47,10 @@ public class OnePairComparingImplTest extends TestCase {
         IRanking ranking2 = new OnePairRankingImpl();
         RankingResult result2 = ranking2.resolve(p2);
 
-        assertTrue(result2 != null);
-        assertEquals(result2.getRankingEnum(), RankingEnum.ONE_PAIR);
+        Assert.assertNotNull(result2);
+        Assert.assertEquals(result2.getRankingEnum(), RankingEnum.ONE_PAIR);
 
-        assertEquals(-1, p.compareTo(p2));
+        Assert.assertEquals(-1, p.compareTo(p2));
     }
 
     @Test
@@ -71,8 +71,8 @@ public class OnePairComparingImplTest extends TestCase {
         IRanking ranking = new OnePairRankingImpl();
         RankingResult result = ranking.resolve(p);
 
-        assertTrue(result != null);
-        assertEquals(result.getRankingEnum(), RankingEnum.ONE_PAIR);
+        Assert.assertNotNull(result);
+        Assert.assertEquals(result.getRankingEnum(), RankingEnum.ONE_PAIR);
 
 
         Card card21 = new Card(CardSuitEnum.SPADES, CardRankEnum.CARD_EIGHT);
@@ -91,9 +91,9 @@ public class OnePairComparingImplTest extends TestCase {
         IRanking ranking2 = new OnePairRankingImpl();
         RankingResult result2 = ranking2.resolve(p2);
 
-        assertTrue(result2 != null);
-        assertEquals(result2.getRankingEnum(), RankingEnum.ONE_PAIR);
+        Assert.assertNotNull(result2);
+        Assert.assertEquals(result2.getRankingEnum(), RankingEnum.ONE_PAIR);
 
-        assertEquals(-1, p.compareTo(p2));
+        Assert.assertEquals(-1, p.compareTo(p2));
     }
 }

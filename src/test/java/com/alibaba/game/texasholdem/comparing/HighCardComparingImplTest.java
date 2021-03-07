@@ -4,10 +4,10 @@ import com.alibaba.game.texasholdem.*;
 import com.alibaba.game.texasholdem.ranking.HighCardRankingImpl;
 import com.alibaba.game.texasholdem.ranking.IRanking;
 import com.alibaba.game.texasholdem.ranking.RankingResult;
-import junit.framework.TestCase;
+import org.junit.Assert;
 import org.junit.Test;
 
-public class HighCardComparingImplTest extends TestCase {
+public class HighCardComparingImplTest {
 
     @Test
     public void testComparing() {
@@ -27,8 +27,8 @@ public class HighCardComparingImplTest extends TestCase {
         IRanking ranking = new HighCardRankingImpl();
         RankingResult result = ranking.resolve(p);
 
-        assertTrue(result != null);
-        assertEquals(result.getRankingEnum(), RankingEnum.HIGH_CARD);
+        Assert.assertNotNull(result);
+        Assert.assertEquals(result.getRankingEnum(), RankingEnum.HIGH_CARD);
 
 
         Card card21 = new Card(CardSuitEnum.DIAMONDS, CardRankEnum.CARD_FOUR);
@@ -47,9 +47,9 @@ public class HighCardComparingImplTest extends TestCase {
         IRanking ranking2 = new HighCardRankingImpl();
         RankingResult result2 = ranking2.resolve(p2);
 
-        assertTrue(result2 != null);
-        assertEquals(result2.getRankingEnum(), RankingEnum.HIGH_CARD);
+        Assert.assertNotNull(result2);
+        Assert.assertEquals(result2.getRankingEnum(), RankingEnum.HIGH_CARD);
 
-        assertEquals(-1, p.compareTo(p2));
+        Assert.assertEquals(-1, p.compareTo(p2));
     }
 }

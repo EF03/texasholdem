@@ -1,10 +1,10 @@
 package com.alibaba.game.texasholdem.ranking;
 
 import com.alibaba.game.texasholdem.*;
-import junit.framework.TestCase;
+import org.junit.Assert;
 import org.junit.Test;
 
-public class StraightFlushRankingImplTest extends TestCase {
+public class StraightFlushRankingImplTest {
 
 
     @Test
@@ -28,9 +28,9 @@ public class StraightFlushRankingImplTest extends TestCase {
         IRanking ranking = new StraightFlushRankingImpl();
 
         RankingResult result = ranking.resolve(p);
-        assertTrue(result != null);
+        Assert.assertNotNull(result);
 
-        assertEquals(result.getRankingEnum(), RankingEnum.STRAIGHT_FLUSH);
+        Assert.assertEquals(result.getRankingEnum(), RankingEnum.STRAIGHT_FLUSH);
 
         Player p2 = new Player();
         p2.addCard(card9);
@@ -42,7 +42,7 @@ public class StraightFlushRankingImplTest extends TestCase {
         IRanking ranking2 = new StraightFlushRankingImpl();
 
         RankingResult result2 = ranking2.resolve(p2);
-        assertTrue(result2 == null);
+        Assert.assertNull(result2);
 
     }
 

@@ -9,15 +9,17 @@ import java.util.List;
 
 /**
  * Class {@code Dealer} 荷官, 负责发牌, 启动游戏.
+ *
+ * @author fm035
  */
 public class Dealer {
 
-    private Poker poker;
-    private List<Player> playerList;
+    private final Poker poker;
+    private final List<Player> playerList;
 
     public Dealer() {
         this.poker = new Poker();
-        this.playerList = new ArrayList<Player>();
+        this.playerList = new ArrayList<>();
     }
 
     public Dealer(Player top, Player... players) {
@@ -49,7 +51,6 @@ public class Dealer {
      */
     public void start() {
         for (Player player : this.playerList) {
-//            int nextInt = ThreadLocalRandom.current().nextInt(Constants.HAND_CARD_NUMERS);
             int nextInt = Constants.HAND_CARD_NUMERS;
             for (int j = 0; j < nextInt; j++) {
                 player.addCard(this.poker.dispatch());
@@ -57,10 +58,14 @@ public class Dealer {
         }
     }
 
-    /* 发底牌 / 窩牌  */
+    /**
+     * 发底牌 / 窩牌  數量
+     */
     private static final int HOLE_CARD_NUM = 2;
 
-    // 窩牌
+    /**
+     * 发底牌 / 窩牌
+     */
     public void holeCards() {
         for (Player player : this.playerList) {
             if (TexasPlayerStatusEnum.FOLD != player.getStatus()) {
@@ -71,7 +76,9 @@ public class Dealer {
         }
     }
 
-    // 懸牌 / 轉牌 / 河牌
+    /**
+     * 懸牌 / 轉牌 / 河牌
+     */
     public void deal() {
         Card card = this.poker.dispatch();
         for (Player player : this.playerList) {

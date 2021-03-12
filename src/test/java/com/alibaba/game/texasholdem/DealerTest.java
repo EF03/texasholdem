@@ -19,9 +19,9 @@ public class DealerTest {
         Assert.assertEquals(3, dealer.getPlayerSize());
 
         dealer.start();
-        Assert.assertEquals(5, player1.getCardSize());
-        Assert.assertEquals(5, player2.getCardSize());
-        Assert.assertEquals(5, player3.getCardSize());
+        Assert.assertEquals(Constants.HAND_CARD_NUMBERS, player1.getCardSize());
+        Assert.assertEquals(Constants.HAND_CARD_NUMBERS, player2.getCardSize());
+        Assert.assertEquals(Constants.HAND_CARD_NUMBERS, player3.getCardSize());
     }
 
 }

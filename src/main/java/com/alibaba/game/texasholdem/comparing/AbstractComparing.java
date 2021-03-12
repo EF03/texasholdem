@@ -17,7 +17,7 @@ public abstract class AbstractComparing implements IComparing {
      *
      * @param map1
      * @param map2
-     * @param pair
+     * @param pair 兩條 = 2 ,三條 = 3
      * @return
      */
     protected int multiComparing(Map<Integer, Integer> map1, Map<Integer, Integer> map2, int pair) {
@@ -74,21 +74,21 @@ public abstract class AbstractComparing implements IComparing {
      * @return
      */
     protected int pairComparing(Map<Integer, Integer> map1, Map<Integer, Integer> map2, int pair, int maxPairLoopAddOne, int countNum) {
-        System.out.println("map1 size = " + map1.size());
-        System.out.println("map2 size = " + map2.size());
-        System.out.println("map1 = " + map1);
-        System.out.println("map2 = " + map2);
-        System.out.println("pair = " + pair);
-        System.out.println("maxPairLoopAddOne = " + maxPairLoopAddOne);
-        System.out.println("countNum = " + countNum);
+//        System.out.println("map1 size = " + map1.size());
+//        System.out.println("map2 size = " + map2.size());
+//        System.out.println("map1 = " + map1);
+//        System.out.println("map2 = " + map2);
+//        System.out.println("pair = " + pair);
+//        System.out.println("maxPairLoopAddOne = " + maxPairLoopAddOne);
+//        System.out.println("countNum = " + countNum);
         if (maxPairLoopAddOne - 1 == 0) {
             pair = 1;
         }
         int p1MaxNum = this.findMaxNumber(map1, pair);
         int p2MaxNum = this.findMaxNumber(map2, pair);
-        System.out.println("p1MaxNum = " + p1MaxNum);
-        System.out.println("p2MaxNum = " + p2MaxNum);
-        System.out.println("\n ============================================================ ");
+//        System.out.println("p1MaxNum = " + p1MaxNum);
+//        System.out.println("p2MaxNum = " + p2MaxNum);
+//        System.out.println("\n ============================================================ ");
 
 
         if (p1MaxNum < p2MaxNum) {

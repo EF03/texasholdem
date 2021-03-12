@@ -9,6 +9,7 @@ import java.util.List;
 /**
  * Class {@code StraightRankingImpl}
  * 解析玩家手中的牌是不是顺子
+ *
  * @author fm035
  */
 public class StraightRankingImpl extends AbstractRanking {
@@ -21,24 +22,12 @@ public class StraightRankingImpl extends AbstractRanking {
         List<Card> cards = player.getCards();
         // 如果是同色
         if (!this.isSameSuit(cards)) {
-            boolean isStraight = true;
-            Card previousCard = null;
-            for (Card card : cards) {
-                if (previousCard != null) {
-                    if (card.getRank().getNumber() - previousCard.getRank().getNumber() != -1) {
-                        isStraight = false;
-                        break;
-                    }
-                }
-                previousCard = card;
-            }
+            boolean isStraight = this.isStraight(player);
             if (isStraight) {
                 result = new RankingResult();
                 result.setRankingEnum(RankingEnum.STRAIGHT);
             }
-
         }
-
         return result;
     }
 

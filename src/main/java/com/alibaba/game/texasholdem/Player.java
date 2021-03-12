@@ -52,7 +52,7 @@ public class Player implements Comparable<Player> {
     public void addCard(Card card) {
         this.cards.add(card);
         this.originCards.add(card);
-        Collections.sort(this.cards);
+//        Collections.sort(this.cards);
     }
 
     public List<Card> getCards() {
@@ -71,7 +71,7 @@ public class Player implements Comparable<Player> {
     public Map<Integer, Integer> getCardsRankCountMap() {
         List<Card> cards = this.getCards();
 //        System.out.println("cards = " + cards);
-        Map<Integer, Integer> rankCount = new HashMap<>(16);
+        Map<Integer, Integer> rankCount = new HashMap<>(7);
         for (Card card : cards) {
             Integer number = card.getRank().getNumber();
             if (!rankCount.containsKey(number)) {

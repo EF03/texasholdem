@@ -20,16 +20,11 @@ public class HighCardRankingImpl extends AbstractRanking {
         RankingResult result = null;
         Map<Integer, Integer> rankCount = player.getCardsRankCountMap();
 
-        boolean allOne = false;
-
-        if (rankCount.size() == Constants.HAND_CARD_NUMERS) {
+        boolean allOne = true;
+        if (rankCount.size() == Constants.HAND_CARD_NUMBERS) {
             List<Card> cards = player.getCards();
             if (!this.isSameSuit(cards)) {
-                Card maxCard = cards.get(0);
-                Card minCard = cards.get(cards.size() - 1);
-                if (maxCard.getRank().getNumber() - minCard.getRank().getNumber() >= Constants.HAND_CARD_NUMERS) {
-                    allOne = true;
-                }
+                allOne = !this.isStraight(player);
             }
         }
 

@@ -8,7 +8,8 @@ import java.util.Map;
 
 /**
  * Class {@code ThreeOfTheKindRankingImpl}
- * 解析玩家手中的牌是不是三条(3+1+1)
+ * 解析玩家手中的牌是不是三条(3+1+1+1+1)
+ *
  * @author fm035
  */
 public class ThreeOfTheKindRankingImpl extends AbstractRanking {
@@ -22,10 +23,12 @@ public class ThreeOfTheKindRankingImpl extends AbstractRanking {
         boolean hasThree = false;
 
         Collection<Integer> values = rankCount.values();
-        for (int value : values) {
-            if (value == 3) {
-                hasThree = true;
-                break;
+        if (rankCount.size() <= 5) {
+            for (int value : values) {
+                if (value == 3) {
+                    hasThree = true;
+                    break;
+                }
             }
         }
 

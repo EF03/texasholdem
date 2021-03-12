@@ -16,6 +16,8 @@ public class OnePairComparingImplTest {
         Card card3 = new Card(CardSuitEnum.DIAMONDS, CardRankEnum.CARD_EIGHT);
         Card card5 = new Card(CardSuitEnum.HEARTS, CardRankEnum.CARD_FIVE);
         Card card4 = new Card(CardSuitEnum.CLUBS, CardRankEnum.CARD_FOUR);
+        Card card6 = new Card(CardSuitEnum.CLUBS, CardRankEnum.CARD_TWO);
+        Card card7 = new Card(CardSuitEnum.CLUBS, CardRankEnum.CARD_QUEUE);
 
         Player p = new Player();
         p.addCard(card1);
@@ -23,6 +25,8 @@ public class OnePairComparingImplTest {
         p.addCard(card3);
         p.addCard(card4);
         p.addCard(card5);
+        p.addCard(card6);
+        p.addCard(card7);
 
         IRanking ranking = new OnePairRankingImpl();
         RankingResult result = ranking.resolve(p);
@@ -36,6 +40,7 @@ public class OnePairComparingImplTest {
         Card card23 = new Card(CardSuitEnum.CLUBS, CardRankEnum.CARD_EIGHT);
         Card card25 = new Card(CardSuitEnum.SPADES, CardRankEnum.CARD_FIVE);
         Card card24 = new Card(CardSuitEnum.HEARTS, CardRankEnum.CARD_THREE);
+        Card card44 = new Card(CardSuitEnum.HEARTS, CardRankEnum.CARD_FOUR);
 
         Player p2 = new Player();
         p2.addCard(card21);
@@ -43,6 +48,8 @@ public class OnePairComparingImplTest {
         p2.addCard(card23);
         p2.addCard(card24);
         p2.addCard(card25);
+        p2.addCard(card6);
+        p2.addCard(card44);
 
         IRanking ranking2 = new OnePairRankingImpl();
         RankingResult result2 = ranking2.resolve(p2);
@@ -60,6 +67,8 @@ public class OnePairComparingImplTest {
         Card card3 = new Card(CardSuitEnum.DIAMONDS, CardRankEnum.CARD_TEN);
         Card card4 = new Card(CardSuitEnum.CLUBS, CardRankEnum.CARD_FOUR);
         Card card5 = new Card(CardSuitEnum.HEARTS, CardRankEnum.CARD_FIVE);
+        Card card6 = new Card(CardSuitEnum.CLUBS, CardRankEnum.CARD_TWO);
+        Card card7 = new Card(CardSuitEnum.CLUBS, CardRankEnum.CARD_ACE);
 
         Player p = new Player();
         p.addCard(card1);
@@ -67,6 +76,8 @@ public class OnePairComparingImplTest {
         p.addCard(card3);
         p.addCard(card4);
         p.addCard(card5);
+        p.addCard(card6);
+        p.addCard(card7);
 
         IRanking ranking = new OnePairRankingImpl();
         RankingResult result = ranking.resolve(p);
@@ -87,6 +98,8 @@ public class OnePairComparingImplTest {
         p2.addCard(card23);
         p2.addCard(card24);
         p2.addCard(card25);
+        p2.addCard(card6);
+        p2.addCard(card7);
 
         IRanking ranking2 = new OnePairRankingImpl();
         RankingResult result2 = ranking2.resolve(p2);

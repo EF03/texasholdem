@@ -15,6 +15,8 @@ public class OnePairRankingImplTest {
         Card card12 = new Card(CardSuitEnum.SPADES, CardRankEnum.CARD_QUEUE);
         Card card11 = new Card(CardSuitEnum.CLUBS, CardRankEnum.CARD_JACK);
         Card card9 = new Card(CardSuitEnum.HEARTS, CardRankEnum.CARD_NINE);
+        Card card8 = new Card(CardSuitEnum.HEARTS, CardRankEnum.CARD_EIGHT);
+        Card card7 = new Card(CardSuitEnum.HEARTS, CardRankEnum.CARD_SEVEN);
 
         Card otherSuitCard = new Card(CardSuitEnum.DIAMONDS, CardRankEnum.CARD_TEN);
 
@@ -24,6 +26,8 @@ public class OnePairRankingImplTest {
         p.addCard(card11);
         p.addCard(card12);
         p.addCard(card9);
+        p.addCard(card8);
+        p.addCard(card7);
 
         IRanking ranking = new OnePairRankingImpl();
 
@@ -38,6 +42,8 @@ public class OnePairRankingImplTest {
         p2.addCard(card12);
         p2.addCard(card9);
         p2.addCard(otherSuitCard);
+        p2.addCard(card8);
+        p2.addCard(card7);
 
         IRanking ranking2 = new OnePairRankingImpl();
 

@@ -36,7 +36,7 @@ public class Main {
 
     public static void main(String[] args) {
         long time = System.currentTimeMillis();
-        for (int i = 0; i < 100000000; i++) {
+        for (int i = 0; i < 1000; i++) {
             boolean isBreak = playTexa();
 //            if (isBreak) {
 //                break;
@@ -74,8 +74,9 @@ public class Main {
         d.deal();
         d.deal();
         d.deal();
-
+        long time = System.currentTimeMillis();
         d.showHand();
+        System.out.println("showHand = " + (System.currentTimeMillis() - time) + " 毫秒");
 
 
         List<Player> players = d.getRankingPlayers();

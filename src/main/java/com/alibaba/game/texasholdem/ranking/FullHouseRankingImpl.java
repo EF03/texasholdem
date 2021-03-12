@@ -8,7 +8,7 @@ import java.util.Map;
 
 /**
  * Class {@code FullHouseRankingImpl}
- * 解析玩家手中的牌是不是三条+一对
+ * 解析玩家手中的牌是不是三条+一对+1+1
  *
  * @author fm035
  */
@@ -21,15 +21,21 @@ public class FullHouseRankingImpl extends AbstractRanking {
 
         boolean isFullHouse = false;
         Map<Integer, Integer> rankCount = player.getCardsRankCountMap();
-
-        if (rankCount.size() == 2) {
+        int countTwo = 0;
+        int countThree = 0;
+        if (rankCount.size() <= 4) {
             Collection<Integer> values = rankCount.values();
             for (int value : values) {
-                if (value == 2 || value == 3) {
-                    isFullHouse = true;
-                    break;
+                if (value == 2) {
+                    countTwo++;
+                }
+                if (value == 3) {
+                    countThree++;
                 }
             }
+        }
+        if (countTwo >= 1 && countThree >= 1 || countThree >= 2) {
+            isFullHouse = true;
         }
 
         if (isFullHouse) {

@@ -18,16 +18,19 @@ public class RankingFacade implements IRanking {
     private final static Object LOCK = new Object();
 
     static {
+        /* 机率由高到低 */
+        RANKINGS.add(new HighCardRankingImpl());
+        RANKINGS.add(new OnePairRankingImpl());
+        RANKINGS.add(new TwoPairsRankingImpl());
+        RANKINGS.add(new ThreeOfTheKindRankingImpl());
+        RANKINGS.add(new StraightRankingImpl());
+        RANKINGS.add(new FlushRankingImpl());
+        RANKINGS.add(new FullHouseRankingImpl());
+        RANKINGS.add(new FourOfTheKindRankingImpl());
+        /* 皇家同花顺 要在同花顺前 */
         RANKINGS.add(new RoyalFlushRankingImpl());
         RANKINGS.add(new StraightFlushRankingImpl());
-        RANKINGS.add(new FourOfTheKindRankingImpl());
-        RANKINGS.add(new FullHouseRankingImpl());
-        RANKINGS.add(new FlushRankingImpl());
-        RANKINGS.add(new StraightRankingImpl());
-        RANKINGS.add(new ThreeOfTheKindRankingImpl());
-        RANKINGS.add(new TwoPairsRankingImpl());
-        RANKINGS.add(new OnePairRankingImpl());
-        RANKINGS.add(new HighCardRankingImpl());
+        /* default 放最下面 */
         RANKINGS.add(new DefaultRankingImpl());
     }
 

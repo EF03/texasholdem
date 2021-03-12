@@ -22,17 +22,7 @@ public class StraightFlushRankingImpl extends AbstractRanking {
         List<Card> cards = player.getCards();
         // 如果是同色
         if (this.isSameSuit(cards)) {
-            boolean isStraight = true;
-            Card previousCard = null;
-            for (Card card : cards) {
-                if (previousCard != null) {
-                    if (card.getRank().getNumber() - previousCard.getRank().getNumber() != -1) {
-                        isStraight = false;
-                        break;
-                    }
-                }
-                previousCard = card;
-            }
+            boolean isStraight = this.isStraight(player);
             if (isStraight) {
                 result = new RankingResult();
                 result.setRankingEnum(RankingEnum.STRAIGHT_FLUSH);

@@ -23,7 +23,7 @@ public class RoyalFlushRankingImpl extends AbstractRanking {
         List<Card> cards = player.getCards();
         // 如果是同色
         if (this.isSameSuit(cards)) {
-            List<CardRankEnum> ranks = new ArrayList<CardRankEnum>();
+            List<CardRankEnum> ranks = new ArrayList<>();
             for (Card card : cards) {
                 ranks.add(card.getRank());
             }
@@ -37,7 +37,6 @@ public class RoyalFlushRankingImpl extends AbstractRanking {
                 result.setRankingEnum(RankingEnum.ROYAL_FLUSH);
             }
         }
-
         return result;
     }
 

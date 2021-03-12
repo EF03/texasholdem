@@ -11,10 +11,10 @@ public class PlayerTest {
     public void testAddCard() {
         Poker poker = new Poker();
         Player player = new Player();
-        for (int i = 0; i < Constants.HAND_CARD_NUMERS; i++) {
+        for (int i = 0; i < Constants.HAND_CARD_NUMBERS; i++) {
             player.addCard(poker.dispatch());
         }
-        Assert.assertEquals(5, player.getCardSize());
+        Assert.assertEquals(Constants.HAND_CARD_NUMBERS, player.getCardSize());
     }
 
     @Test

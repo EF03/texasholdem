@@ -8,15 +8,13 @@ public class StraightRankingImplTest {
 
 
     @Test
-    public void testIsStraightRanking() {
+    public void testIsStraightRanking1() {
 
         Card card13 = new Card(CardSuitEnum.SPADES, CardRankEnum.CARD_KING);
         Card card12 = new Card(CardSuitEnum.HEARTS, CardRankEnum.CARD_QUEUE);
         Card card11 = new Card(CardSuitEnum.CLUBS, CardRankEnum.CARD_JACK);
         Card card10 = new Card(CardSuitEnum.HEARTS, CardRankEnum.CARD_TEN);
         Card card9 = new Card(CardSuitEnum.DIAMONDS, CardRankEnum.CARD_NINE);
-
-        Card otherSuitCard = new Card(CardSuitEnum.DIAMONDS, CardRankEnum.CARD_TEN);
 
         Player p = new Player();
         p.addCard(card9);
@@ -28,9 +26,20 @@ public class StraightRankingImplTest {
         IRanking ranking = new StraightRankingImpl();
 
         RankingResult result = ranking.resolve(p);
-        Assert.assertTrue(result != null);
+        Assert.assertNotNull(result);
 
         Assert.assertEquals(result.getRankingEnum(), RankingEnum.STRAIGHT);
+    }
+
+    @Test
+    public void testIsStraightRanking2() {
+
+        Card card12 = new Card(CardSuitEnum.HEARTS, CardRankEnum.CARD_QUEUE);
+        Card card11 = new Card(CardSuitEnum.CLUBS, CardRankEnum.CARD_JACK);
+        Card card10 = new Card(CardSuitEnum.HEARTS, CardRankEnum.CARD_TEN);
+        Card card9 = new Card(CardSuitEnum.DIAMONDS, CardRankEnum.CARD_NINE);
+
+        Card otherSuitCard = new Card(CardSuitEnum.DIAMONDS, CardRankEnum.CARD_TEN);
 
         Player p2 = new Player();
         p2.addCard(card9);
@@ -42,7 +51,7 @@ public class StraightRankingImplTest {
         IRanking ranking2 = new StraightRankingImpl();
 
         RankingResult result2 = ranking2.resolve(p2);
-        Assert.assertTrue(result2 == null);
+        Assert.assertNull(result2);
 
     }
 

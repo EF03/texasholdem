@@ -24,7 +24,7 @@ public class FourOfTheKindRankingImpl extends AbstractRanking {
         boolean hasFour = false;
         Collection<Integer> values = rankCount.values();
         for (int value : values) {
-            if (value == Constants.HAND_CARD_NUMERS - 1) {
+            if (value == Constants.COMPARE_CARD_NUMBERS - 1) {
                 hasFour = true;
                 break;
             }

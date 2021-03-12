@@ -22,8 +22,10 @@ public class FlushRankingImpl extends AbstractRanking {
         List<Card> cards = player.getCards();
         // 如果是同色
         if (this.isSameSuit(cards)) {
-            result = new RankingResult();
-            result.setRankingEnum(RankingEnum.FLUSH);
+            if( !this.isStraight(player)){
+                result = new RankingResult();
+                result.setRankingEnum(RankingEnum.FLUSH);
+            }
         }
 
         return result;

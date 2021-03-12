@@ -51,7 +51,7 @@ public class Dealer {
      */
     public void start() {
         for (Player player : this.playerList) {
-            int nextInt = Constants.HAND_CARD_NUMERS;
+            int nextInt = Constants.HAND_CARD_NUMBERS;
             for (int j = 0; j < nextInt; j++) {
                 player.addCard(this.poker.dispatch());
             }

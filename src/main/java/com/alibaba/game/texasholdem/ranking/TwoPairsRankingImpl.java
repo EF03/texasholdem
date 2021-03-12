@@ -8,7 +8,7 @@ import java.util.Map;
 
 /**
  * Class {@code TwoPairsRankingImpl}
- * 解析玩家手中的牌是不是两对(2+2+1)
+ * 解析玩家手中的牌是不是两对(2+2+1+1+1)
  *
  * @author fm035
  */
@@ -22,7 +22,7 @@ public class TwoPairsRankingImpl extends AbstractRanking {
 
         boolean hasTwo = false;
         int countTwo = 0;
-        if (rankCount.size() <= 4) {
+        if (rankCount.size() <= 5) {
             Collection<Integer> values = rankCount.values();
             for (int value : values) {
                 if (value == 2) {
